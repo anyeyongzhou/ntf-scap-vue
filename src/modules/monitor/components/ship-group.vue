@@ -47,7 +47,6 @@
 import { inject, onMounted, ref } from "vue";
 import { useCool } from "/@/cool";
 import { ElTree } from "element-plus";
-// import * as _ from "lodash";
 import { Refresh as RefreshIcon } from "@element-plus/icons-vue";
 import { revDeepTree } from "/@/cool/utils";
 

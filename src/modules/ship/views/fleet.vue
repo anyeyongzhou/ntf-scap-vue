@@ -31,7 +31,7 @@
 <script lang="ts" name="ship-fleet" setup>
 import { useCrud, useTable, useUpsert } from "@cool-vue/crud";
 import { useCool } from "/@/cool";
-import DeptSelect from "/$/base/views/components/dept/select.vue";
+import DeptSelect from "/$/base/components/dept/select.vue";
 
 const { service } = useCool();
 

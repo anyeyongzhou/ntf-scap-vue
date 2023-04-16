@@ -1230,7 +1230,7 @@ declare namespace Eps {
 		 */
 		code?: number;
 		/**
-		 * 是否强制更新 0:否 1：是
+		 * 是否强制更新 0-否 1-是
 		 */
 		isForce?: number;
 		/**
