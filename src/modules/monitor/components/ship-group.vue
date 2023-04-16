@@ -44,11 +44,13 @@
 </template>
 
 <script lang="ts" name="ship-group" setup>
-import { inject, onMounted, ref } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 import { useCool } from "/@/cool";
 import { ElTree } from "element-plus";
 import { Refresh as RefreshIcon } from "@element-plus/icons-vue";
 import { revDeepTree } from "/@/cool/utils";
+import { useViewGroup } from "/$/base";
+const { ViewGroup } = useViewGroup();
 
 const { service } = useCool();
 
@@ -65,16 +67,24 @@ const defaultProps = {
 const treeData = ref<any[]>([]);
 // 选中
 const info = ref();
-const viewGroup = inject<any>("viewGroup");
 
 // 获取 ids
-function rowClick(e: any) {
-	if (e) {
-		const ids = e.children ? revDeepTree(e.children).map((e) => e.id) : [];
-		ids.unshift(e.id);
-		info.value = e;
-		viewGroup.checkExpand(false);
-		emit("row-click", { item: e, ids });
+function rowClick(item?: any) {
+	if (!item) {
+		item = treeData.value[0];
+	}
+
+	if (item) {
+		const ids = item.children ? revDeepTree(item.children).map((e) => e.id) : [];
+		ids.unshift(item.id);
+
+		// 选择
+		ViewGroup.value?.select(item);
+
+		nextTick(() => {
+			// 刷新列表
+			return emit("row-click", { item: item, ids });
+		});
 	}
 }
 

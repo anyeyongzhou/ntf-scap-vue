@@ -57,12 +57,14 @@
 </template>
 
 <script lang="ts" name="device-group" setup>
-import { inject, onMounted, ref } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 import { useCool } from "/@/cool";
 import { ElTree } from "element-plus";
 import * as _ from "lodash";
 import { Refresh as RefreshIcon, VideoCameraFilled } from "@element-plus/icons-vue";
 import { revDeepTree } from "/@/cool/utils";
+import { useViewGroup } from "/$/base";
+const { ViewGroup } = useViewGroup();
 
 const { service } = useCool();
 
@@ -77,15 +79,23 @@ const defaultProps = {
 };
 
 const treeData = ref<any[]>([]);
-const viewGroup = inject<any>("viewGroup");
 
 // 获取 ids
-function rowClick(e: any) {
-	if (e && e.status) {
-		const ids = e.children ? revDeepTree(e.children).map((e) => e.id) : [];
-		ids.unshift(e.id);
-		viewGroup.checkExpand(false);
-		emit("row-click", { item: e, ids });
+function rowClick(item?: any) {
+	if (!item) {
+		item = treeData.value[0];
+	}
+	if (item && item.status) {
+		const ids = item.children ? revDeepTree(item.children).map((e) => e.id) : [];
+		ids.unshift(item.id);
+
+		// 选择
+		ViewGroup.value?.select(item);
+
+		nextTick(() => {
+			// 刷新列表
+			return emit("row-click", { item: item, ids });
+		});
 	}
 }
 

@@ -24,7 +24,7 @@
 		"dayjs": "^1.11.7",
 		"dplayer": "^1.27.1",
 		"echarts": "^5.3.3",
-		"element-plus": "2.2.28",
+		"element-plus": "2.3.3",
 		"file-saver": "^2.0.5",
 		"lodash-es": "^4.17.21",
 		"mitt": "^3.0.0",
