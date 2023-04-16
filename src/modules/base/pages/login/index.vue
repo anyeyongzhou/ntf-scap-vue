@@ -250,6 +250,10 @@ body > .el-container {
 				border-top-right-radius: 3px;
 				border-bottom-right-radius: 3px;
 			}
+
+			:deep(.el-input-group__append) {
+				padding: 0;
+			}
 		}
 
 		.submit-btn {
