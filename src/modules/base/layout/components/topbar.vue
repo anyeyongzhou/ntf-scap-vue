@@ -19,13 +19,13 @@
 
 		<!-- 工具栏 -->
 		<ul class="app-topbar__tools">
-			<auto-menu-btn />
+			<auto-menu-btn v-if="isDev" />
 
-			<li>
+			<li v-if="false">
 				<cl-chat />
 			</li>
 
-			<li>
+			<li v-if="false">
 				<cl-theme />
 			</li>
 		</ul>
@@ -57,7 +57,7 @@
 
 <script lang="ts" name="app-topbar" setup>
 import { useBase } from "/$/base";
-import { useCool } from "/@/cool";
+import { useCool, isDev } from "/@/cool";
 import RouteNav from "./route-nav.vue";
 import AMenu from "./amenu.vue";
 import AutoMenuBtn from "/$/magic/components/auto-menu/btn.vue";

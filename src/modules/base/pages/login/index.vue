@@ -1,59 +1,88 @@
 <template>
-	<div class="page-login">
-		<div class="box">
-			<div class="logo">
-				<img src="/logo.png" alt="Logo" />
-				<span>{{ app.info.name }}</span>
+	<el-container class="h-full" direction="vertical">
+		<el-header v-if="true">
+			<div class="header">
+				<img src="../../static/images/logo.png" alt="logo" class="w-168px" />
+				<span class="sm:text-xl md:text-2xl ml-2 font-medium text-gray-500">
+					{{ app.info.name }}
+				</span>
 			</div>
-			<p class="desc">一款快速开发后台权限管理系统</p>
+		</el-header>
+		<el-main>
+			<div class="login-form-content">
+				<div class="box-card bg-white p-4 rounded-md shadow">
+					<div class="login-title">系统登录</div>
+					<el-form class="form" :disabled="saving" size="large">
+						<el-form-item>
+							<el-input
+								placeholder="请输入用户名"
+								v-model="form.username"
+								maxlength="20"
+								autocomplete="on"
+								clearable
+							>
+								<template #prepend>
+									<div class="i-ion-person-circle-outline text-size-normal"></div>
+								</template>
+							</el-input>
+						</el-form-item>
 
-			<el-form label-position="top" class="form" :disabled="saving">
-				<el-form-item label="用户名">
-					<input
-						v-model="form.username"
-						placeholder="请输入用户名"
-						maxlength="20"
-						autocomplete="on"
-					/>
-				</el-form-item>
+						<el-form-item>
+							<el-input
+								placeholder="请输入密码"
+								v-model="form.password"
+								maxlength="20"
+								autocomplete="off"
+								clearable
+								show-password
+							>
+								<template #prepend>
+									<el-icon><lock /></el-icon>
+								</template>
+							</el-input>
+						</el-form-item>
 
-				<el-form-item label="密码">
-					<input
-						v-model="form.password"
-						type="password"
-						placeholder="请输入密码"
-						maxlength="20"
-						autocomplete="off"
-					/>
-				</el-form-item>
+						<el-form-item>
+							<el-input
+								class="input-with-captcha"
+								placeholder="请输入验证码"
+								maxlength="4"
+								v-model="form.verifyCode"
+								auto-complete="off"
+								@change="toLogin"
+							>
+								<template #prepend>
+									<div class="i-ion-shield-checkmark-outline"></div>
+								</template>
+								<template #append>
+									<captcha
+										class="value"
+										:ref="setRefs('captcha')"
+										v-model="form.captchaId"
+										@change="
+											() => {
+												form.verifyCode = '';
+											}
+										"
+									/>
+								</template>
+							</el-input>
+						</el-form-item>
 
-				<el-form-item label="验证码">
-					<div class="row">
-						<input
-							v-model="form.verifyCode"
-							placeholder="图片验证码"
-							maxlength="4"
-							@keyup.enter="toLogin"
-						/>
-
-						<captcha
-							:ref="setRefs('captcha')"
-							v-model="form.captchaId"
-							@change="
-								() => {
-									form.verifyCode = '';
-								}
-							"
-						/>
-					</div>
-				</el-form-item>
-
-				<div class="op">
-					<el-button round :loading="saving" @click="toLogin">登录</el-button>
+						<el-button class="submit-btn" @click="toLogin" :saving="saving">
+							登录
+						</el-button>
+					</el-form>
 				</div>
-			</el-form>
-		</div>
-	</div>
+			</div>
+		</el-main>
+		<el-footer>
+			<div class="support">
+				<img src="../../static/images/ntfweb-logo.png" alt="ntfweb" />
+				<span>提供技术支持</span>
+			</div>
+		</el-footer>
+	</el-container>
 </template>
 
 <script lang="ts" name="login" setup>
@@ -62,6 +91,7 @@ import { ElMessage } from "element-plus";
 import { useCool } from "/@/cool";
 import { useBase } from "/$/base";
 import Captcha from "./components/captcha.vue";
+import { Lock } from "@element-plus/icons-vue";
 
 const { refs, setRefs, router, service } = useCool();
 const { user, app } = useBase();
@@ -103,121 +133,133 @@ async function toLogin() {
 		await Promise.all(app.events.hasToken.map((e) => e()));
 
 		// 跳转
-		router.push("/");
+		await router.push("/");
 	} catch (err: any) {
-		refs.captcha.refresh();
+		refs.value.captcha.refresh();
 		ElMessage.error(err.message);
 	}
 
 	saving.value = false;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+/*const alertOpen = () => {
+	ElMessageBox.alert("您已输入3次错误密码，超过5次后该账号将被锁定10分钟。", "信息提示", {
+		// if you want to disable its autofocus
+		// autofocus: false,
+		confirmButtonText: "确定",
+		callback: (action: Action) => {
+			ElMessage({
+				type: "info",
+				message: `action: ${action}`
+			});
+		}
+	});
+};*/
 </script>
 
 <style lang="scss" scoped>
-.page-login {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	width: 100%;
-	position: relative;
-	background-color: #2f3447;
+body > .el-container {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+}
 
-	.box {
+.el-footer {
+	color: #333;
+	text-align: center;
+	height: 48px;
+
+	.support {
+		height: 100%;
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		flex-direction: row;
 		align-items: center;
+		justify-content: center;
 
-		.logo {
-			height: 50px;
+		img {
+			width: 72px;
+		}
+
+		span {
+			margin-left: 6px;
+			font-size: 13px;
+			color: gray;
+		}
+	}
+}
+
+.el-header {
+	color: #333;
+	height: 72px;
+
+	.header {
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding-left: 60px;
+
+		.title {
+			margin-left: 6px;
+			font-size: 24px;
+			color: #666666;
+			font-weight: 500;
+		}
+	}
+}
+
+.el-main {
+	background-image: url("../../static/images/bg.jpg");
+	background-size: cover;
+	overflow: hidden;
+	height: 100%;
+	text-align: center;
+
+	.login-form-content {
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: right;
+		padding-right: 10%;
+	}
+}
+
+.box-card {
+	width: 360px;
+
+	.login-title {
+		margin-top: 10px;
+		font-size: 20px;
+		color: #1e70d8;
+		font-weight: bold;
+	}
+
+	.el-form {
+		margin: 30px 12px;
+
+		.el-form-item {
 			margin-bottom: 30px;
-			display: flex;
-			align-items: center;
+		}
+
+		.input-with-captcha {
+			.value {
+				background-color: rgba(75, 87, 85, 0.5);
+				width: 138px;
+				border-top-right-radius: 3px;
+				border-bottom-right-radius: 3px;
+			}
+		}
+
+		.submit-btn {
+			width: 100%;
+			background: linear-gradient(to top left, #2f3447, #445e8e);
 			color: #fff;
-
-			img {
-				height: 50px;
-			}
-
-			span {
-				font-size: 38px;
-				margin-left: 10px;
-				letter-spacing: 5px;
-				font-weight: bold;
-			}
-		}
-
-		.desc {
-			color: #eee;
-			font-size: 14px;
-			letter-spacing: 1px;
-			margin-bottom: 50px;
-		}
-
-		.el-form {
-			width: 300px;
-
-			:deep(.el-form-item) {
-				margin-bottom: 20px;
-
-				.el-form-item__label {
-					color: #ccc;
-				}
-			}
-
-			input {
-				background-color: transparent;
-				color: #fff;
-				border: 0;
-				height: 40px;
-				width: calc(100% - 4px);
-				margin: 0 2px;
-				padding: 0 2px;
-				box-sizing: border-box;
-				-webkit-text-fill-color: #fff;
-				font-size: 15px;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-				border-radius: 0;
-
-				&:-webkit-autofill {
-					box-shadow: 0 0 0px 1000px transparent inset !important;
-					transition: background-color 50000s ease-in-out 0s;
-				}
-
-				&::-webkit-input-placeholder {
-					font-size: 12px;
-				}
-
-				&:focus {
-					border-color: #fff;
-				}
-			}
-
-			.row {
-				display: flex;
-				align-items: center;
-				width: 100%;
-				position: relative;
-
-				.captcha {
-					position: absolute;
-					right: 0;
-					bottom: 1px;
-				}
-			}
-		}
-
-		.op {
-			display: flex;
-			justify-content: center;
-			margin-top: 50px;
-
-			:deep(.el-button) {
-				height: 40px;
-				width: 140px;
-				font-size: 15px;
-			}
+			font-size: 15px;
+			letter-spacing: 2px;
+			cursor: pointer;
+			margin-top: 10px;
 		}
 	}
 }

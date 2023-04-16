@@ -35,7 +35,11 @@ export default (): UserConfig => {
 				]
 			}),
 			Unocss({
-				presets: [presetIcons(), presetUno(), presetAttributify()]
+				presets: [
+					presetIcons(),
+					presetUno(),
+					presetAttributify()
+				]
 			})
 		],
 		css: {

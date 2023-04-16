@@ -26,5 +26,6 @@ export async function bootstrap(app: App) {
 	await Loading.set([eventLoop()]);
 
 	// vue3-seamless-scroll
+	// @ts-ignore
 	app.use(vue3SeamlessScroll);
 }

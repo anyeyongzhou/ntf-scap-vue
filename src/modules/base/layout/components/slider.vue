@@ -1,12 +1,16 @@
 <template>
 	<div class="app-slider">
-		<div class="app-slider__logo" @click="toHome">
-			<img src="/logo.png" />
+		<div class="app-slider__logo">
+			<img src="/logo.png" alt="logo" />
 			<span v-if="!app.isFold || browser.isMini">{{ app.info.name }}</span>
 		</div>
 
 		<div class="app-slider__container">
 			<b-menu />
+		</div>
+
+		<div class="app-slider__version">
+			<span v-if="modeName !== 'production'">{{ modeName.toUpperCase() }} VERSION</span>
 		</div>
 	</div>
 </template>
@@ -15,13 +19,11 @@
 import { useBase } from "/$/base";
 import { useBrowser } from "/@/cool";
 import BMenu from "./bmenu";
+import { ref } from "vue";
 
 const { browser } = useBrowser();
 const { app } = useBase();
-
-function toHome() {
-	location.href = "https://cool-js.com";
-}
+const modeName = ref(import.meta.env.VITE_MODE_NAME);
 </script>
 
 <style lang="scss">
@@ -38,21 +40,22 @@ function toHome() {
 		cursor: pointer;
 
 		img {
-			height: 30px;
-			width: 30px;
+			height: 24px;
+			width: 24px;
 		}
 
 		span {
 			color: #fff;
 			font-weight: bold;
-			font-size: 26px;
+			font-size: 15px;
 			margin-left: 10px;
+			font-family: inherit;
 			white-space: nowrap;
 		}
 	}
 
 	&__container {
-		height: calc(100% - 80px);
+		height: calc(100% - 100px);
 		overflow-y: auto;
 
 		&::-webkit-scrollbar {
@@ -120,13 +123,20 @@ function toHome() {
 			&--collapse {
 				.wrap {
 					text-align: center;
-				}
 
-				.el-sub-menu__title {
-					padding: 0;
+					.cl-svg {
+						font-size: 18px;
+					}
 				}
 			}
 		}
+	}
+
+	&__version {
+		color: gray;
+		opacity: 0.5;
+		text-align: center;
+		font-size: 12px;
 	}
 }
 </style>

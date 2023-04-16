@@ -9,7 +9,7 @@ export const isDev = import.meta.env.MODE === "development";
 export const config: Config = {
 	// 项目信息
 	app: {
-		name: "COOL-ADMIN",
+		name: "新万基船舶指挥分析平台",
 
 		// 菜单
 		menu: {
@@ -26,7 +26,7 @@ export const config: Config = {
 			// 转场动画
 			transition: "slide",
 			// 首页组件
-			home: () => import("/$/demo/views/home/index.vue")
+			home: () => import("/$/home/views/index.vue")
 		},
 
 		// 字体图标库
