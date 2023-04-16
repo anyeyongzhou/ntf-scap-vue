@@ -257,6 +257,14 @@ const Upsert = useUpsert({
 			}
 		},
 		{
+			prop: "callNum",
+			label: "IP电话",
+			span: 12,
+			component: {
+				name: "el-input"
+			}
+		},
+		{
 			prop: "remark",
 			label: "备注",
 			component: {

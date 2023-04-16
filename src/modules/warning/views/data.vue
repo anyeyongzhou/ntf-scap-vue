@@ -14,7 +14,14 @@
 
 		<el-row>
 			<!-- 数据表格 -->
-			<cl-table ref="Table" />
+			<cl-table ref="Table">
+				<template #column-longitude="{ scope }">
+					<div>{{ scope.row.longitude.toFixed(2) }}</div>
+				</template>
+				<template #column-latitude="{ scope }">
+					<div>{{ scope.row.latitude.toFixed(2) }}</div>
+				</template>
+			</cl-table>
 		</el-row>
 
 		<el-row>
