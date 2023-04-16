@@ -6,13 +6,16 @@ import compression from "vite-plugin-compression";
 import { visualizer } from "rollup-plugin-visualizer";
 import { proxy } from "./src/cool/config/proxy";
 import { cool } from "./build/cool";
+// @ts-ignore
+import copy from "rollup-plugin-copy";
+import Unocss from "unocss/vite";
+import {presetAttributify, presetIcons, presetUno} from "unocss";
 
 function resolve(dir: string) {
 	return path.resolve(__dirname, ".", dir);
 }
 
 // https://vitejs.dev/config
-
 export default (): UserConfig => {
 	return {
 		base: "/",
@@ -25,6 +28,14 @@ export default (): UserConfig => {
 				open: false,
 				gzipSize: true,
 				brotliSize: true
+			}),
+			copy({
+				targets: [
+					{src: 'node_modules/@liveqing/liveplayer-v3/dist/component/liveplayer-lib.min.js', dest: 'public/js'},
+				]
+			}),
+			Unocss({
+				presets: [presetIcons(), presetUno(), presetAttributify()]
 			})
 		],
 		css: {

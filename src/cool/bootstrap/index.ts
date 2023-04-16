@@ -4,6 +4,10 @@ import { createModule } from "./module";
 import { createEps } from "./eps";
 import { router } from "../router";
 import { Loading } from "../utils";
+// @ts-ignore
+import vue3SeamlessScroll from "vue3-seamless-scroll";
+import "uno.css";
+import "ol/ol.css";
 
 export async function bootstrap(app: App) {
 	// pinia
@@ -19,5 +23,8 @@ export async function bootstrap(app: App) {
 	await createEps();
 
 	// 加载
-	Loading.set([eventLoop()]);
+	await Loading.set([eventLoop()]);
+
+	// vue3-seamless-scroll
+	app.use(vue3SeamlessScroll);
 }

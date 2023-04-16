@@ -1,83 +1,33 @@
 <template>
 	<div class="view-my">
-		<div class="title">基本信息</div>
-
-		<el-form label-width="100px" :model="form" :disabled="loading">
-			<el-form-item label="头像">
-				<cl-upload is-space v-model="form.headImg" />
-			</el-form-item>
-
-			<el-form-item label="昵称">
-				<el-input v-model="form.nickName" placeholder="请填写昵称" />
-			</el-form-item>
-
-			<el-form-item label="密码">
-				<el-input v-model="form.password" type="password" />
-			</el-form-item>
-
-			<el-form-item>
-				<el-button type="primary" :disabled="loading" @click="save">保存修改</el-button>
-			</el-form-item>
-		</el-form>
+		<el-tabs tab-position="left" style="height: 100%" class="info-tabs">
+			<el-tab-pane label="基本信息">
+				<basic />
+			</el-tab-pane>
+			<el-tab-pane label="账户密码">
+				<password />
+			</el-tab-pane>
+		</el-tabs>
 	</div>
 </template>
 
 <script lang="ts" name="my-info" setup>
-import { ElMessage } from "element-plus";
-import { reactive, ref } from "vue";
-import { useBase } from "/$/base";
-import { useCool } from "/@/cool";
-import { cloneDeep } from "lodash-es";
-
-const { service } = useCool();
-const { user } = useBase();
-
-// 表单数据
-const form = reactive<any>(cloneDeep(user.info));
-
-// 保存状态
-const loading = ref(false);
-
-// 保存
-async function save() {
-	const { headImg, nickName, password } = form;
-
-	loading.value = true;
-
-	await service.base.comm
-		.personUpdate({
-			headImg,
-			nickName,
-			password
-		})
-		.then(() => {
-			form.password = "";
-			ElMessage.success("修改成功");
-			user.get();
-		})
-		.catch((err) => {
-			ElMessage.error(err.message);
-		});
-
-	loading.value = false;
-}
+import Basic from "/$/base/views/components/info/basic.vue";
+import Password from "/$/base/views/components/info/password.vue";
 </script>
 
 <style lang="scss">
 .view-my {
 	background-color: var(--el-bg-color);
 	height: 100%;
-	padding: 20px;
+	padding: 20px 40px;
 	box-sizing: border-box;
+}
 
-	.el-form {
-		width: 400px;
-		max-width: 100%;
-	}
-
-	.title {
-		margin-bottom: 30px;
-		font-size: 15px;
-	}
+.info-tabs > .el-tabs__content {
+	padding: 5px 30px;
+	color: #6b778c;
+	font-size: 32px;
+	font-weight: 600;
 }
 </style>
