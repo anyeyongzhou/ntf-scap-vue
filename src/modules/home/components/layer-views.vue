@@ -26,7 +26,7 @@
 						<span class="tree-node__label" @dblclick="handleDoubleClick(data)">
 							{{ node.label }}
 						</span>
-						<span v-if="data.children">（{{ data?.children?.length }}）</span>
+						<span v-if="data.children & false">（{{ data?.children?.length }}）</span>
 					</span>
 				</template>
 			</el-tree>
@@ -146,96 +146,51 @@ onMounted(function () {
 </script>
 
 <style lang="scss" scoped>
-.title {
-	width: 100px;
-	height: 24px;
-	position: relative;
-	color: white;
-	font-size: 14px;
-	display: flex;
-	align-items: center;
-	padding-left: 12px;
-	margin-bottom: 1px;
-	margin-left: 10px;
-
-	&::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: rgba(43, 89, 255, 0.75);
-		transform: skewX(-30deg);
-		z-index: -1;
-	}
-}
-
 .layer-container {
 	background-color: rgba(85, 96, 113, 0.9);
 	border-radius: 5px;
 	padding: 5px;
 	width: 280px;
-}
 
-.tree-node {
-	flex: 1;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding-right: 8px;
+	.tree-node {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		padding-right: 8px;
 
-	&__label {
-		margin-left: 5px;
+		&__label {
+			margin-left: 5px;
+		}
+
+		&__color {
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			margin-left: 8px;
+		}
 	}
 
-	&__color {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		margin-left: 8px;
+	/* 设置树形最外层的背景颜色和字体颜色 */
+	::v-deep(.el-tree) {
+		color: #fff;
+		background-color: transparent;
+		font-size: 12px;
 	}
-}
 
-/*
-!* 改变被点击节点背景颜色，字体颜色 *!
-::v-deep(.el-tree-node.is-current > .el-tree-node__content) {
-	background-color: transparent;
-	color: #fff !important;
-}
+	/* 改变被点击节点背景颜色，字体颜色 */
+	::v-deep(.el-tree-node:focus > .el-tree-node__content) {
+		background-color: transparent;
+		color: #fff;
+	}
 
-!* 设置三角形图标的颜色 *!
-::v-deep(.el-tree-node__expand-icon) {
-	color: #fff;
-}
+	/* 树节点鼠标悬浮式改变背景色，字体颜色 */
+	::v-deep(.el-tree-node__content:hover) {
+		background-color: #4165d7;
+		color: #fff;
+	}
 
-!* 改变节点高度 *!
-::v-deep(.el-tree-node__content) {
-	!*height: 36px;*!
-	!*background-color: #3274e6;*!
-	font-size: 10px;
-}*/
-
-/* 设置树形最外层的背景颜色和字体颜色 */
-::v-deep(.el-tree) {
-	color: #fff;
-	background-color: transparent;
-	font-size: 12px;
-}
-
-/* 改变被点击节点背景颜色，字体颜色 */
-::v-deep(.el-tree-node:focus > .el-tree-node__content) {
-	background-color: transparent;
-	color: #fff;
-}
-
-/* 树节点鼠标悬浮式改变背景色，字体颜色 */
-::v-deep(.el-tree-node__content:hover) {
-	background-color: #4165d7;
-	color: #fff;
-}
-
-::v-deep(.el-tree-node__label) {
-	font-size: 12px;
+	::v-deep(.el-tree-node__label) {
+		font-size: 12px;
+	}
 }
 </style>

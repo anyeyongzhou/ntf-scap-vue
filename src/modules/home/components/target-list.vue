@@ -3,8 +3,8 @@
 		<column-subtitle :subtitle="props.title" />
 		<div class="target-container">
 			<vue3-seamless-scroll
-				v-if="props.list.length > 0"
-				:list="props.list"
+				v-if="props.list?.length > 0"
+				:list="Array.isArray(props.list) ? props.list : []"
 				class="scroll"
 				:step="0.5"
 				hover
@@ -16,7 +16,7 @@
 					@trackTarget="handleTrackTarget"
 				/>
 			</vue3-seamless-scroll>
-			<el-empty v-if="props.list.length === 0" description="暂无数据" :image-size="36" />
+			<el-empty v-if="props.list?.length === 0" description="暂无数据" :image-size="36" />
 		</div>
 	</div>
 </template>
@@ -56,7 +56,7 @@ function handleTrackTarget(target: any) {
 }
 
 .scroll {
-	height: 150px;
+	height: 45vh; // 150px -> 50vh
 	overflow: hidden;
 	padding: 10px;
 

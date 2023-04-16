@@ -263,34 +263,34 @@ const handleCheckModes = async (modes: any) => {
 
 	.custom-tree-node {
 	}
-}
 
-/* 设置树形最外层的背景颜色和字体颜色 */
-::v-deep(.el-tree) {
-	color: #fff;
-	background-color: transparent;
-	font-size: 12px;
-}
+	/* 设置树形最外层的背景颜色和字体颜色 */
+	::v-deep(.el-tree) {
+		color: #fff;
+		background-color: transparent;
+		font-size: 12px;
+	}
 
-/* 设置三角形图标的颜色 */
-::v-deep(.el-tree-node__expand-icon) {
-	color: white;
-}
+	/* 设置三角形图标的颜色 */
+	::v-deep(.el-tree-node__expand-icon) {
+		color: white;
+	}
 
-::v-deep(.el-tree-node__expand-icon.is-leaf) {
-	color: transparent;
-}
+	::v-deep(.el-tree-node__expand-icon.is-leaf) {
+		color: transparent;
+	}
 
-/* 改变被点击节点背景颜色，字体颜色 */
-::v-deep(.el-tree-node:focus > .el-tree-node__content) {
-	background-color: transparent;
-	color: #fff;
-}
+	/* 改变被点击节点背景颜色，字体颜色 */
+	::v-deep(.el-tree-node:focus > .el-tree-node__content) {
+		background-color: transparent;
+		color: #fff;
+	}
 
-/* 树节点鼠标悬浮式改变背景色，字体颜色 */
-::v-deep(.el-tree-node__content:hover) {
-	background-color: #4165d7;
-	color: #fff;
+	/* 树节点鼠标悬浮式改变背景色，字体颜色 */
+	::v-deep(.el-tree-node__content:hover) {
+		background-color: #4165d7;
+		color: #fff;
+	}
 }
 
 ::v-deep(.el-tabs) {

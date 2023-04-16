@@ -3,7 +3,7 @@
 		<div class="info-container__main">
 			<div class="name">{{ props.ship?.name }}</div>
 			<div
-				v-if="props.ship.longitude"
+				v-if="props.ship?.longitude"
 				class="location"
 				@click="handleLocationClick(props.ship)"
 			>
@@ -97,12 +97,11 @@
 				</el-tab-pane>
 				<el-tab-pane label="视频监控" name="2">
 					<div class="device-box" v-loading="deviceFetching">
-						<div v-if="deviceList.length > 0">
-							<div v-for="(item, index) in deviceList" :key="index">
+						<div v-if="deviceList.length > 0" class="flex flex-wrap items-center">
+							<div v-for="(item, index) in deviceList" :key="index" class="w-1/2">
 								<div class="device-box__item" @click="handlePlayVideo(item)">
 									<cl-svg name="icon-play" :size="36" />
 									<div style="margin-top: 6px">
-										{{ item.name }}
 										<cl-svg
 											:name="
 												item.status === 'online'
@@ -112,6 +111,7 @@
 											size="8"
 											style="margin-bottom: 2px"
 										/>
+										<span class="text-xs ml-1">{{ item.name }}</span>
 									</div>
 								</div>
 							</div>

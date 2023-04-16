@@ -1,6 +1,6 @@
 <template>
 	<div
-		id="map"
+		id="track-map"
 		class="map__x"
 		ref="drawRef"
 		v-loading="fetchLoading"
@@ -41,7 +41,6 @@ import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
 import { useResizeObserver } from "@vueuse/core";
 import { Vector, XYZ } from "ol/source";
 import { LineString, Point } from "ol/geom";
-import "ol/ol.css";
 import * as control from "ol/control";
 import { Icon, Stroke, Style } from "ol/style";
 import OwnShipStillIcon from "/$/home/static/icons/svg/icon-own-ship-still.svg";
@@ -124,12 +123,12 @@ function initMap() {
 	});
 	// 地图实例
 	map.value = new Map({
-		target: "map", // 对应页面里 id 为 map 的元素
+		target: "track-map", // 对应页面里 id 为 map 的元素
 		layers: [
 			// 图层
 			new TileLayer({
 				source: new XYZ({
-					url: "http://61.160.124.211:7001/public/sea/{z}/{y}/{x}.png"
+					url: import.meta.env.VITE_SEA_TILE_LAYER_URL
 				})
 			}),
 			vectorLayer.value
