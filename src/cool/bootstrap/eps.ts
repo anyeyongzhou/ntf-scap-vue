@@ -194,7 +194,7 @@ export async function createEps() {
 			}
 
 			if (list) {
-				set(list);
+				await set(list);
 			}
 		} catch (err) {
 			console.error("[Eps] 获取失败！", err);

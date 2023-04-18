@@ -121,9 +121,9 @@ export function getBrowser() {
 	// 平台标签
 	let tag = "";
 
-	const isTocuh =
+	const isTouch =
 		"ontouchstart" in window || ua.indexOf("touch") !== -1 || ua.indexOf("mobile") !== -1;
-	if (isTocuh) {
+	if (isTouch) {
 		if (ua.indexOf("ipad") !== -1) {
 			tag = "pad";
 		} else if (ua.indexOf("mobile") !== -1) {
@@ -188,7 +188,7 @@ export function getBrowser() {
 	const isPC = tag === "pc";
 
 	// 是否移动端
-	const isMobile = isPC ? false : true;
+	const isMobile = !isPC;
 
 	// 是否移动端 + 屏幕宽过小
 	const isMini = screen === "xs" || isMobile;
