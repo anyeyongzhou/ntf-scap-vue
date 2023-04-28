@@ -17,10 +17,6 @@ declare namespace Eps {
 		 */
 		orderNum?: number;
 		/**
-		 * YMS分组ID
-		 */
-		groupId?: string;
-		/**
 		 * 创建时间
 		 */
 		createTime?: Date;
@@ -47,10 +43,6 @@ declare namespace Eps {
 		 * 行为
 		 */
 		action?: string;
-		/**
-		 * 请求方式
-		 */
-		method?: string;
 		/**
 		 * ip
 		 */
@@ -268,26 +260,6 @@ declare namespace Eps {
 		 */
 		socketId?: string;
 		/**
-		 * YMS用户ID
-		 */
-		userId?: string;
-		/**
-		 * YMS用户号码
-		 */
-		userNumber?: string;
-		/**
-		 * 分机号, 0000-9999
-		 */
-		extension?: string;
-		/**
-		 * IP电话
-		 */
-		callNum?: string;
-		/**
-		 * 推送通知DeviceToken
-		 */
-		deviceToken?: string;
-		/**
 		 * 创建时间
 		 */
 		createTime?: Date;
@@ -388,189 +360,6 @@ declare namespace Eps {
 		 * 标识
 		 */
 		key?: string;
-		/**
-		 * 创建时间
-		 */
-		createTime?: Date;
-		/**
-		 * 更新时间
-		 */
-		updateTime?: Date;
-		/**
-		 * 任意键值
-		 */
-		[key: string]: any;
-	}
-
-	interface EhhAisEntity {
-		/**
-		 * ID
-		 */
-		id?: number;
-		/**
-		 * 船舶的MMSI
-		 */
-		shipId?: string;
-		/**
-		 * 时间戳，数据发送时间，秒
-		 */
-		timestamp?: Date;
-		/**
-		 * AIS动态数据列表的size
-		 */
-		listDynamicSize?: number;
-		/**
-		 * AIS静态数据列表的size
-		 */
-		listStaticSize?: number;
-		/**
-		 * 创建时间
-		 */
-		createTime?: Date;
-		/**
-		 * 更新时间
-		 */
-		updateTime?: Date;
-		/**
-		 * 任意键值
-		 */
-		[key: string]: any;
-	}
-
-	interface EhhAlarmEntity {
-		/**
-		 * ID
-		 */
-		id?: number;
-		/**
-		 * 船舶的MMSI
-		 */
-		shipId?: string;
-		/**
-		 * 时间戳，数据发送时间，秒
-		 */
-		timestamp?: number;
-		/**
-		 * 告警类型，0-取消报警，1-人员落水，2-船舶触礁，3-机舱着火
-		 */
-		alarmType?: number;
-		/**
-		 * 创建时间
-		 */
-		createTime?: Date;
-		/**
-		 * 更新时间
-		 */
-		updateTime?: Date;
-		/**
-		 * 任意键值
-		 */
-		[key: string]: any;
-	}
-
-	interface EhhRadarEntity {
-		/**
-		 * ID
-		 */
-		id?: number;
-		/**
-		 * 船舶的MMSI
-		 */
-		shipId?: string;
-		/**
-		 * 时间戳，数据发送时间，秒
-		 */
-		timestamp?: number;
-		/**
-		 * 雷达数据数组的size
-		 */
-		listSize?: number;
-		/**
-		 * 原数据
-		 */
-		rawData?: string;
-		/**
-		 * 创建时间
-		 */
-		createTime?: Date;
-		/**
-		 * 更新时间
-		 */
-		updateTime?: Date;
-		/**
-		 * 任意键值
-		 */
-		[key: string]: any;
-	}
-
-	interface EnforcementDeviceEntity {
-		/**
-		 * ID
-		 */
-		id?: number;
-		/**
-		 * 船舶ID
-		 */
-		shipId?: BigInt;
-		/**
-		 * 名称
-		 */
-		name?: string;
-		/**
-		 * 邮箱，长度<64
-		 */
-		email?: string;
-		/**
-		 * 分机号，必须符合企业号码段规则，默认4位数字
-		 */
-		extension?: string;
-		/**
-		 * 密码，最小长度8，最大长度64
-		 */
-		password?: string;
-		/**
-		 * YMS设备ID
-		 */
-		deviceId?: string;
-		/**
-		 * YMS设备号码
-		 */
-		deviceNumber?: string;
-		/**
-		 * 备注
-		 */
-		remark?: string;
-		/**
-		 * 创建时间
-		 */
-		createTime?: Date;
-		/**
-		 * 更新时间
-		 */
-		updateTime?: Date;
-		/**
-		 * 任意键值
-		 */
-		[key: string]: any;
-	}
-
-	interface EnforcementPhotoEntity {
-		/**
-		 * ID
-		 */
-		id?: number;
-		/**
-		 * 用户ID
-		 */
-		userId?: BigInt;
-		/**
-		 * 执法主题
-		 */
-		subject?: string;
-		/**
-		 * 拍照Urls
-		 */
-		urls?: string;
 		/**
 		 * 创建时间
 		 */
@@ -835,7 +624,7 @@ declare namespace Eps {
 		 */
 		type?: number;
 		/**
-		 * 通讯方式 0-IP电话 1-视频会议 2-卫星电话 3-视频监控
+		 * 通讯方式 0-短波电台 1-IP电话 2-视频监控 3-天通电话
 		 */
 		contactTypes?: string;
 		/**
@@ -1212,49 +1001,6 @@ declare namespace Eps {
 		[key: string]: any;
 	}
 
-	interface VersionInfoEntity {
-		/**
-		 * ID
-		 */
-		id?: number;
-		/**
-		 * 用户ID
-		 */
-		userId?: BigInt;
-		/**
-		 * 版本名
-		 */
-		name?: string;
-		/**
-		 * 版本号
-		 */
-		code?: number;
-		/**
-		 * 是否强制更新 0-否 1-是
-		 */
-		isForce?: number;
-		/**
-		 * 下载链接
-		 */
-		downloadUrl?: string;
-		/**
-		 * 更新内容
-		 */
-		content?: string;
-		/**
-		 * 创建时间
-		 */
-		createTime?: Date;
-		/**
-		 * 更新时间
-		 */
-		updateTime?: Date;
-		/**
-		 * 任意键值
-		 */
-		[key: string]: any;
-	}
-
 	interface WarningDataEntity {
 		/**
 		 * ID
@@ -1281,18 +1027,6 @@ declare namespace Eps {
 		 */
 		latitude?: double;
 		/**
-		 * 对地航向，单位度
-		 */
-		cog?: float;
-		/**
-		 * 对地航速，单位节
-		 */
-		sog?: float;
-		/**
-		 * 船艏向，单位度
-		 */
-		heading?: float;
-		/**
 		 * 备注
 		 */
 		remark?: string;
@@ -1316,10 +1050,6 @@ declare namespace Eps {
 		 */
 		id?: number;
 		/**
-		 * 用户ID
-		 */
-		userId?: string;
-		/**
 		 * 规则名称
 		 */
 		name?: string;
@@ -1336,7 +1066,7 @@ declare namespace Eps {
 		 */
 		speed?: double;
 		/**
-		 * 状态 0:停用 1：启用
+		 * 状态 0-停用 1-启用
 		 */
 		status?: boolean;
 		/**
@@ -1354,7 +1084,7 @@ declare namespace Eps {
 		/**
 		 * 适用船舶 0-所有船舶 1-具体船舶
 		 */
-		enableShipType?: number;
+		enableShipType?: double;
 		/**
 		 * 备注
 		 */
@@ -1545,10 +1275,6 @@ declare namespace Eps {
 
 	interface BaseComm {
 		/**
-		 * 修改密码信息
-		 */
-		passwordUpdate(data?: any): Promise<any>;
-		/**
 		 * 修改个人信息
 		 */
 		personUpdate(data?: any): Promise<any>;
@@ -1604,7 +1330,6 @@ declare namespace Eps {
 		 * 权限标识
 		 */
 		permission: {
-			passwordUpdate: string;
 			personUpdate: string;
 			uploadMode: string;
 			permmenu: string;
@@ -1622,7 +1347,6 @@ declare namespace Eps {
 		 * 权限状态
 		 */
 		_permission: {
-			passwordUpdate: boolean;
 			personUpdate: boolean;
 			uploadMode: boolean;
 			permmenu: boolean;
@@ -2107,81 +1831,6 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
-	interface ConferenceInfo {
-		/**
-		 * getState
-		 */
-		getState(data?: any): Promise<any>;
-		/**
-		 * invite
-		 */
-		invite(data?: any): Promise<any>;
-		/**
-		 * hangUp
-		 */
-		hangUp(data?: any): Promise<any>;
-		/**
-		 * list
-		 */
-		list(data?: any): Promise<any[]>;
-		/**
-		 * page
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: any[];
-			[key: string]: any;
-		}>;
-		/**
-		 * info
-		 */
-		info(data?: any): Promise<any>;
-		/**
-		 * update
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * delete
-		 */
-		delete(data?: any): Promise<any>;
-		/**
-		 * add
-		 */
-		add(data?: any): Promise<any>;
-		/**
-		 * 权限标识
-		 */
-		permission: {
-			getState: string;
-			invite: string;
-			hangUp: string;
-			list: string;
-			page: string;
-			info: string;
-			update: string;
-			delete: string;
-			add: string;
-		};
-		/**
-		 * 权限状态
-		 */
-		_permission: {
-			getState: boolean;
-			invite: boolean;
-			hangUp: boolean;
-			list: boolean;
-			page: boolean;
-			info: boolean;
-			update: boolean;
-			delete: boolean;
-			add: boolean;
-		};
-		/**
-		 * 请求
-		 */
-		request: Service["request"];
-	}
-
 	interface DemoGoods {
 		/**
 		 * 删除
@@ -2359,411 +2008,6 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
-	interface EhhAis {
-		/**
-		 * 删除
-		 */
-		delete(data?: any): Promise<any>;
-		/**
-		 * 单个信息
-		 */
-		info(data?: any): Promise<EhhAisEntity>;
-		/**
-		 * 列表查询
-		 */
-		list(data?: any): Promise<EhhAisEntity[]>;
-		/**
-		 * 分页查询
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: EhhAisEntity[];
-			[key: string]: any;
-		}>;
-		/**
-		 * update
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * add
-		 */
-		add(data?: any): Promise<any>;
-		/**
-		 * 权限标识
-		 */
-		permission: {
-			delete: string;
-			info: string;
-			list: string;
-			page: string;
-			update: string;
-			add: string;
-		};
-		/**
-		 * 权限状态
-		 */
-		_permission: {
-			delete: boolean;
-			info: boolean;
-			list: boolean;
-			page: boolean;
-			update: boolean;
-			add: boolean;
-		};
-		/**
-		 * 请求
-		 */
-		request: Service["request"];
-	}
-
-	interface EhhAlarm {
-		/**
-		 * 删除
-		 */
-		delete(data?: any): Promise<any>;
-		/**
-		 * 单个信息
-		 */
-		info(data?: any): Promise<EhhAlarmEntity>;
-		/**
-		 * 列表查询
-		 */
-		list(data?: any): Promise<EhhAlarmEntity[]>;
-		/**
-		 * 分页查询
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: EhhAlarmEntity[];
-			[key: string]: any;
-		}>;
-		/**
-		 * update
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * add
-		 */
-		add(data?: any): Promise<any>;
-		/**
-		 * 权限标识
-		 */
-		permission: {
-			delete: string;
-			info: string;
-			list: string;
-			page: string;
-			update: string;
-			add: string;
-		};
-		/**
-		 * 权限状态
-		 */
-		_permission: {
-			delete: boolean;
-			info: boolean;
-			list: boolean;
-			page: boolean;
-			update: boolean;
-			add: boolean;
-		};
-		/**
-		 * 请求
-		 */
-		request: Service["request"];
-	}
-
-	interface EhhData {
-		/**
-		 * 查询船只AIS、雷达数据
-		 */
-		query(data?: any): Promise<any>;
-		/**
-		 * list
-		 */
-		list(data?: any): Promise<any[]>;
-		/**
-		 * page
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: any[];
-			[key: string]: any;
-		}>;
-		/**
-		 * info
-		 */
-		info(data?: any): Promise<any>;
-		/**
-		 * update
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * delete
-		 */
-		delete(data?: any): Promise<any>;
-		/**
-		 * add
-		 */
-		add(data?: any): Promise<any>;
-		/**
-		 * 权限标识
-		 */
-		permission: {
-			query: string;
-			list: string;
-			page: string;
-			info: string;
-			update: string;
-			delete: string;
-			add: string;
-		};
-		/**
-		 * 权限状态
-		 */
-		_permission: {
-			query: boolean;
-			list: boolean;
-			page: boolean;
-			info: boolean;
-			update: boolean;
-			delete: boolean;
-			add: boolean;
-		};
-		/**
-		 * 请求
-		 */
-		request: Service["request"];
-	}
-
-	interface EhhRadar {
-		/**
-		 * 删除
-		 */
-		delete(data?: any): Promise<any>;
-		/**
-		 * 单个信息
-		 */
-		info(data?: any): Promise<EhhRadarEntity>;
-		/**
-		 * 列表查询
-		 */
-		list(data?: any): Promise<EhhRadarEntity[]>;
-		/**
-		 * 分页查询
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: EhhRadarEntity[];
-			[key: string]: any;
-		}>;
-		/**
-		 * update
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * add
-		 */
-		add(data?: any): Promise<any>;
-		/**
-		 * 权限标识
-		 */
-		permission: {
-			delete: string;
-			info: string;
-			list: string;
-			page: string;
-			update: string;
-			add: string;
-		};
-		/**
-		 * 权限状态
-		 */
-		_permission: {
-			delete: boolean;
-			info: boolean;
-			list: boolean;
-			page: boolean;
-			update: boolean;
-			add: boolean;
-		};
-		/**
-		 * 请求
-		 */
-		request: Service["request"];
-	}
-
-	interface EnforcementDevice {
-		/**
-		 * 删除
-		 */
-		delete(data?: any): Promise<any>;
-		/**
-		 * 修改
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * 单个信息
-		 */
-		info(data?: any): Promise<EnforcementDeviceEntity>;
-		/**
-		 * 列表查询
-		 */
-		list(data?: any): Promise<EnforcementDeviceEntity[]>;
-		/**
-		 * 分页查询
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: EnforcementDeviceEntity[];
-			[key: string]: any;
-		}>;
-		/**
-		 * 新增
-		 */
-		add(data?: any): Promise<any>;
-		/**
-		 * 权限标识
-		 */
-		permission: {
-			delete: string;
-			update: string;
-			info: string;
-			list: string;
-			page: string;
-			add: string;
-		};
-		/**
-		 * 权限状态
-		 */
-		_permission: {
-			delete: boolean;
-			update: boolean;
-			info: boolean;
-			list: boolean;
-			page: boolean;
-			add: boolean;
-		};
-		/**
-		 * 请求
-		 */
-		request: Service["request"];
-	}
-
-	interface EnforcementPhoto {
-		/**
-		 * 删除
-		 */
-		delete(data?: any): Promise<any>;
-		/**
-		 * 修改
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * 单个信息
-		 */
-		info(data?: any): Promise<EnforcementPhotoEntity>;
-		/**
-		 * 列表查询
-		 */
-		list(data?: any): Promise<EnforcementPhotoEntity[]>;
-		/**
-		 * 分页查询
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: EnforcementPhotoEntity[];
-			[key: string]: any;
-		}>;
-		/**
-		 * 新增
-		 */
-		add(data?: any): Promise<any>;
-		/**
-		 * 权限标识
-		 */
-		permission: {
-			delete: string;
-			update: string;
-			info: string;
-			list: string;
-			page: string;
-			add: string;
-		};
-		/**
-		 * 权限状态
-		 */
-		_permission: {
-			delete: boolean;
-			update: boolean;
-			info: boolean;
-			list: boolean;
-			page: boolean;
-			add: boolean;
-		};
-		/**
-		 * 请求
-		 */
-		request: Service["request"];
-	}
-
-	interface EnforcementRecording {
-		/**
-		 * 分页查询
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: any[];
-			[key: string]: any;
-		}>;
-		/**
-		 * list
-		 */
-		list(data?: any): Promise<any[]>;
-		/**
-		 * info
-		 */
-		info(data?: any): Promise<any>;
-		/**
-		 * update
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * delete
-		 */
-		delete(data?: any): Promise<any>;
-		/**
-		 * add
-		 */
-		add(data?: any): Promise<any>;
-		/**
-		 * 权限标识
-		 */
-		permission: {
-			page: string;
-			list: string;
-			info: string;
-			update: string;
-			delete: string;
-			add: string;
-		};
-		/**
-		 * 权限状态
-		 */
-		_permission: {
-			page: boolean;
-			list: boolean;
-			info: boolean;
-			update: boolean;
-			delete: boolean;
-			add: boolean;
-		};
-		/**
-		 * 请求
-		 */
-		request: Service["request"];
-	}
-
 	interface LayerInfo {
 		/**
 		 * allLayers
@@ -2886,18 +2130,6 @@ declare namespace Eps {
 
 	interface MonitorDevice {
 		/**
-		 * liveUrl
-		 */
-		liveUrl(data?: any): Promise<any>;
-		/**
-		 * 根据船舶ID获取摄像头列表
-		 */
-		devices(data?: any): Promise<any>;
-		/**
-		 * control
-		 */
-		control(data?: any): Promise<any>;
-		/**
 		 * 删除
 		 */
 		delete(data?: any): Promise<any>;
@@ -2905,10 +2137,6 @@ declare namespace Eps {
 		 * 修改
 		 */
 		update(data?: any): Promise<any>;
-		/**
-		 * tree
-		 */
-		tree(data?: any): Promise<any>;
 		/**
 		 * 单个信息
 		 */
@@ -2933,12 +2161,8 @@ declare namespace Eps {
 		 * 权限标识
 		 */
 		permission: {
-			liveUrl: string;
-			devices: string;
-			control: string;
 			delete: string;
 			update: string;
-			tree: string;
 			info: string;
 			list: string;
 			page: string;
@@ -2948,12 +2172,8 @@ declare namespace Eps {
 		 * 权限状态
 		 */
 		_permission: {
-			liveUrl: boolean;
-			devices: boolean;
-			control: boolean;
 			delete: boolean;
 			update: boolean;
-			tree: boolean;
 			info: boolean;
 			list: boolean;
 			page: boolean;
@@ -3036,10 +2256,6 @@ declare namespace Eps {
 		 */
 		getList(data?: any): Promise<any>;
 		/**
-		 * 根据关键字查询船舶
-		 */
-		search(data?: any): Promise<any>;
-		/**
 		 * 删除
 		 */
 		delete(data?: any): Promise<any>;
@@ -3047,10 +2263,6 @@ declare namespace Eps {
 		 * 修改
 		 */
 		update(data?: any): Promise<any>;
-		/**
-		 * 船舶轨迹查询
-		 */
-		track(data?: any): Promise<any>;
 		/**
 		 * 单个信息
 		 */
@@ -3078,10 +2290,8 @@ declare namespace Eps {
 			getLocation: string;
 			statistics: string;
 			getList: string;
-			search: string;
 			delete: string;
 			update: string;
-			track: string;
 			info: string;
 			page: string;
 			list: string;
@@ -3094,10 +2304,8 @@ declare namespace Eps {
 			getLocation: boolean;
 			statistics: boolean;
 			getList: boolean;
-			search: boolean;
 			delete: boolean;
 			update: boolean;
-			track: boolean;
 			info: boolean;
 			page: boolean;
 			list: boolean;
@@ -3110,10 +2318,6 @@ declare namespace Eps {
 	}
 
 	interface ShipPort {
-		/**
-		 * 根据关键字查询港口
-		 */
-		search(data?: any): Promise<any>;
 		/**
 		 * 删除
 		 */
@@ -3146,7 +2350,6 @@ declare namespace Eps {
 		 * 权限标识
 		 */
 		permission: {
-			search: string;
 			delete: string;
 			update: string;
 			info: string;
@@ -3158,7 +2361,6 @@ declare namespace Eps {
 		 * 权限状态
 		 */
 		_permission: {
-			search: boolean;
 			delete: boolean;
 			update: boolean;
 			info: boolean;
@@ -3595,63 +2797,6 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
-	interface VersionInfo {
-		/**
-		 * 删除
-		 */
-		delete(data?: any): Promise<any>;
-		/**
-		 * 修改
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * 单个信息
-		 */
-		info(data?: any): Promise<VersionInfoEntity>;
-		/**
-		 * 列表查询
-		 */
-		list(data?: any): Promise<VersionInfoEntity[]>;
-		/**
-		 * 分页查询
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: VersionInfoEntity[];
-			[key: string]: any;
-		}>;
-		/**
-		 * 新增
-		 */
-		add(data?: any): Promise<any>;
-		/**
-		 * 权限标识
-		 */
-		permission: {
-			delete: string;
-			update: string;
-			info: string;
-			list: string;
-			page: string;
-			add: string;
-		};
-		/**
-		 * 权限状态
-		 */
-		_permission: {
-			delete: boolean;
-			update: boolean;
-			info: boolean;
-			list: boolean;
-			page: boolean;
-			add: boolean;
-		};
-		/**
-		 * 请求
-		 */
-		request: Service["request"];
-	}
-
 	interface WarningData {
 		/**
 		 * 删除
@@ -3789,22 +2934,14 @@ declare namespace Eps {
 				user: BaseSysUser;
 			};
 		};
-		conference: { info: ConferenceInfo };
 		demo: { goods: DemoGoods };
 		dict: { info: DictInfo; type: DictType };
-		ehh: { ais: EhhAis; alarm: EhhAlarm; data: EhhData; radar: EhhRadar };
-		enforcement: {
-			device: EnforcementDevice;
-			photo: EnforcementPhoto;
-			recording: EnforcementRecording;
-		};
 		layer: { info: LayerInfo; type: LayerType };
 		monitor: { device: MonitorDevice };
 		ship: { fleet: ShipFleet; info: ShipInfo; port: ShipPort; registry: ShipRegistry };
 		space: { info: SpaceInfo; type: SpaceType };
 		supervise: { fence: SuperviseFence; route: SuperviseRoute; waypoint: SuperviseWaypoint };
 		task: { info: TaskInfo };
-		version: { info: VersionInfo };
 		warning: { data: WarningData; rule: WarningRule };
 	};
 }

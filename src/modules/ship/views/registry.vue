@@ -17,7 +17,11 @@
 			<cl-table ref="Table">
 				<template #column-flagImg="{ scope }">
 					<div class="flex items-center justify-center">
-						<el-image class="h-9 min-w-12" :src="scope.row.flagImg" fit="cover" />
+						<el-image
+							class="h-9 min-w-12"
+							:src="scope.row.flagImg"
+							fit="cover"
+						/>
 					</div>
 				</template>
 			</cl-table>
@@ -43,12 +47,33 @@ const { service } = useCool();
 // cl-upsert 配置
 const Upsert = useUpsert({
 	items: [
-		{ label: "编码", prop: "mid", required: true, component: { name: "el-input" } },
-		{ label: "国家名", prop: "eCountry", required: true, component: { name: "el-input" } },
-		{ label: "中文名", prop: "cCountry", required: true, component: { name: "el-input" } },
+		{
+			label: "编码",
+			prop: "mid",
+			required: true,
+			component: { name: "el-input" },
+		},
+		{
+			label: "国家名",
+			prop: "eCountry",
+			required: true,
+			component: { name: "el-input" },
+		},
+		{
+			label: "中文名",
+			prop: "cCountry",
+			required: true,
+			component: { name: "el-input" },
+		},
 		{ label: "缩写", prop: "abbreviate", component: { name: "el-input" } },
-		{ label: "国旗", prop: "flagImg", component: { name: "cl-upload" } }
-	]
+		{
+			label: "国旗",
+			prop: "flagImg",
+			component: {
+				name: "upload-image",
+			},
+		},
+	],
 });
 
 // cl-table 配置
@@ -60,16 +85,16 @@ const Table = useTable({
 		{ label: "国家名", prop: "eCountry" },
 		{ label: "中文名", prop: "cCountry" },
 		{ label: "缩写", prop: "abbreviate" },
-		{ type: "op", buttons: ["edit", "delete"] }
-	]
+		{ type: "op", buttons: ["edit", "delete"] },
+	],
 });
 
 // cl-crud 配置
 const Crud = useCrud(
 	{
-		service: service.ship.registry
+		service: service.ship.registry,
 	},
-	(app) => {
+	app => {
 		app.refresh();
 	}
 );
